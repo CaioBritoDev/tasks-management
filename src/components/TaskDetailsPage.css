@@ -1,0 +1,33 @@
+.task-details-content {
+  margin-top: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  row-gap: 20px;
+}
+
+.task-details-content div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.task-details-content h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+.task-details-content h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: rgb(85, 80, 80);
+}
+
+#status-task {
+  width: 25px;
+  height: 25px;
+  background-color: rgb(31, 199, 31);
+}

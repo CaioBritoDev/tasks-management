@@ -1,0 +1,23 @@
+.buttons-group {
+  width: 100px;
+  height: 28px;
+  border-radius: 25px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+
+.view-task {
+  background-color: rgb(33, 142, 44);
+}
+
+.edit-task {
+  background-color: rgb(36, 103, 227);
+}
+
+.remove-task {
+  background-color: rgb(227, 36, 84);
+}
+
