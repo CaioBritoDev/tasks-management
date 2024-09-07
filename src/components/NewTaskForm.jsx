@@ -49,7 +49,7 @@ export function NewTaskForm() {
             finished: false,
           });
 
-          navigate({basePathDeploy});
+          navigate(`${basePathDeploy}`);
         }
       }}
     >
