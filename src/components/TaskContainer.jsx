@@ -11,7 +11,7 @@ export function TaskContainer() {
   console.log(tasks)
   return (
     <>
-      <Link to={basePathDeploy + "/create"}>
+      <Link to={basePathDeploy + "create"}>
         <button className="new-task">New Task</button>
       </Link>
       <h1>Old Tasks</h1>

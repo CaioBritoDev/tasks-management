@@ -12,7 +12,7 @@ export default function TaskItemButtons({ setIsEditing, newDataTask }) {
 
   return (
     <>
-      <Link to={`${basePathDeploy}/task/${newDataTask.id}`}>
+      <Link to={`${basePathDeploy}task/${newDataTask.id}`}>
         <button className="view-task buttons-group">View</button>
       </Link>
       <button
