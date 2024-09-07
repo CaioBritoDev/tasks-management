@@ -4,6 +4,8 @@ import { useNavigate, Link } from "react-router-dom";
 import "./NewTaskForm.css";
 import { v4 as uuidv4 } from "uuid";
 
+const basePathDeploy = "/tasks-management/";
+
 export function NewTaskForm() {
   const { setTasks } = useContext(TasksContext);
 
@@ -47,12 +49,12 @@ export function NewTaskForm() {
             finished: false,
           });
 
-          navigate("/");
+          navigate({basePathDeploy});
         }
       }}
     >
       <h1>New Task</h1>
-      <Link to="/" className="close">
+      <Link to={basePathDeploy} className="close">
         X
       </Link>
       <div>

@@ -4,13 +4,15 @@ import { useState, useContext } from "react";
 import { TasksContext } from "../utils/contexts/TasksContext";
 import { Link } from "react-router-dom";
 
+const basePathDeploy = "/tasks-management/";
+
 export default function TaskItemButtons({ setIsEditing, newDataTask }) {
   const { setTasks } = useContext(TasksContext);
   const [label, setLabel] = useState("Edit");
 
   return (
     <>
-      <Link to={`/task/${newDataTask.id}`}>
+      <Link to={`${basePathDeploy}/task/${newDataTask.id}`}>
         <button className="view-task buttons-group">View</button>
       </Link>
       <button
