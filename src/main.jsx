@@ -6,20 +6,19 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { TaskDetailsPage } from "./components/TaskDetailsPage.jsx";
 import { TaskContainer } from "./components/TaskContainer";
-
-const basePathDeploy = "/tasks-management/";
+import { createUrl } from "./utils/linkHelpers.js";
 
 const router = createBrowserRouter([
   {
-    path: basePathDeploy,
+    path: createUrl(),
     element: <App />,
     children: [
       {
-        path: basePathDeploy + "create",
+        path: createUrl("/create"),
         element: <NewTaskForm />,
       },
       {
-        path: basePathDeploy + "task/:taskId",
+        path: createUrl("/task/:taskId"),
         element: <TaskDetailsPage />,
       },
       {

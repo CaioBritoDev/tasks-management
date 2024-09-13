@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import { useState, useContext } from "react";
 import { TasksContext } from "../utils/contexts/TasksContext";
 import { Link } from "react-router-dom";
-
-const basePathDeploy = "/tasks-management/";
+import { createUrl } from "../utils/linkHelpers";
 
 export default function TaskItemButtons({ setIsEditing, newDataTask }) {
   const { setTasks } = useContext(TasksContext);
@@ -12,7 +11,7 @@ export default function TaskItemButtons({ setIsEditing, newDataTask }) {
 
   return (
     <>
-      <Link to={`${basePathDeploy}task/${newDataTask.id}`}>
+      <Link to={createUrl(`/task/${newDataTask.id}`)}>
         <button className="view-task buttons-group">View</button>
       </Link>
       <button

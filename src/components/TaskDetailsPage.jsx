@@ -2,8 +2,7 @@ import { useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import { TasksContext } from "../utils/contexts/TasksContext";
 import "./TaskDetailsPage.css"
-
-const basePathDeploy = "/tasks-management/";
+import { createUrl } from "../utils/linkHelpers";
 
 export function TaskDetailsPage() {
   const { tasks, setTasks } = useContext(TasksContext);
@@ -14,7 +13,7 @@ export function TaskDetailsPage() {
 
   return (
     <div className="task-details-content">
-      <Link to={basePathDeploy} className="close">
+      <Link to={createUrl()} className="close">
         X
       </Link>
       <h1>Task Details</h1>

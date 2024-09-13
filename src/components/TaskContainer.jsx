@@ -3,15 +3,13 @@ import { TaskItem } from "./TaskItem";
 import { TasksContext } from "../utils/contexts/TasksContext";
 import { Link } from "react-router-dom";
 import "./TaskContainer.css";
-
-const basePathDeploy = "/tasks-management/";
+import { createUrl } from "../utils/linkHelpers";
 
 export function TaskContainer() {
   const { tasks } = useContext(TasksContext);
-  console.log(tasks)
   return (
     <>
-      <Link to={basePathDeploy + "create"}>
+      <Link to={createUrl("/create")}>
         <button className="new-task">New Task</button>
       </Link>
       <h1>Old Tasks</h1>
