@@ -57,9 +57,9 @@ export function NewTaskForm() {
         X
       </Link>
       <div>
-        <label htmlFor="title">Title</label>
         <input
           type="text"
+          placeholder="Title"
           id="title"
           value={newTask.title}
           onChange={(e) => {
@@ -69,10 +69,10 @@ export function NewTaskForm() {
         />
       </div>
       <div>
-        <label htmlFor="description">Description</label>
         <input
           type="text"
           id="description"
+          placeholder="Description"
           value={newTask.description}
           onChange={(e) => {
             setSubmitting(false);
@@ -81,7 +81,7 @@ export function NewTaskForm() {
         />
       </div>
       <div className="finished-input-section">
-        <label htmlFor="finished">Finished</label>
+        <label htmlFor="finished">Finished...?</label>
         <input
           type="checkbox"
           id="finished"
