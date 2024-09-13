@@ -10,7 +10,7 @@ import { createUrl } from "./utils/linkHelpers.js";
 
 const router = createBrowserRouter([
   {
-    path: createUrl(),
+    path: createUrl("/"),
     element: <App />,
     children: [
       {
