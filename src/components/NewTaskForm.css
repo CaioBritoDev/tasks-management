@@ -13,7 +13,16 @@ form.new-task {
 form.new-task > div {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
+  margin: 10px;
+}
+
+form.new-task > div > input[type="text"] {
+  font-size: 15px;
+  width: 100%;
+  font-weight: bolder;
+  border: 2px solid black;
+  padding: 15px;
 }
 
 form.new-task > div > input {
