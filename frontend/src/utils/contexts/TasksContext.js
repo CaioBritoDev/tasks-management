@@ -5,7 +5,7 @@ export const TasksContext = createContext({
   tasks: [
     {
       id: 0,
-      title: "",
+      name: "",
       description: "",
       finished: false,
     },

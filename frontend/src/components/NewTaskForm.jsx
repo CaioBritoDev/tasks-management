@@ -2,15 +2,14 @@ import { useContext, useState } from "react";
 import { TasksContext } from "../utils/contexts/TasksContext";
 import { useNavigate, Link } from "react-router-dom";
 import "./NewTaskForm.css";
-import { v4 as uuidv4 } from "uuid";
-import { createUrl } from "../utils/linkHelpers";
+import { createUrl, selectEndpoint } from "../utils/linkHelpers";
+import axios from "axios";
 
 export function NewTaskForm() {
   const { setTasks } = useContext(TasksContext);
 
   const [newTask, setNewTask] = useState({
-    id: "",
-    title: "",
+    name: "",
     description: "",
     finished: false,
   });
@@ -19,31 +18,38 @@ export function NewTaskForm() {
 
   const navigate = useNavigate();
 
-  const isValid = newTask.title && newTask.description;
+  const isValid = newTask.name && newTask.description;
 
   return (
     <form
       className="new-task"
-      onSubmit={(e) => {
+      onSubmit={async(e) => {
         e.preventDefault();
         setSubmitting(true);
+        
         if (isValid) {
           // Setting the ID in the new task
           // If here, instead of creating this new variable, I update the newTask variable with the new counter,
           // it will not work, since it's a asychronus proccess, and will not await for that change in id
           // so the id gets duplicated
-          const taskToAdd = {
-            ...newTask,
-            id: uuidv4(),
-          };
+          async function addTask() {
+            try {
+              const response = await axios.post(selectEndpoint('/tasks/create/'), newTask);
+              return response.data;
+            } catch (error) {
+              // Error handling -> show the message to user
+              console.log(error.message); 
+            }
+          }  
+          
+          const taskToAdd = await addTask();
 
           // Setting a new task in the array
           setTasks((tasks) => [taskToAdd, ...tasks]);
 
           // Reset form fields
           setNewTask({
-            id: "",
-            title: "",
+            name: "",
             description: "",
             finished: false,
           });
@@ -59,12 +65,12 @@ export function NewTaskForm() {
       <div>
         <input
           type="text"
-          placeholder="Title"
-          id="title"
-          value={newTask.title}
+          placeholder="Name"
+          id="name"
+          value={newTask.name}
           onChange={(e) => {
             setSubmitting(false);
-            setNewTask((task) => ({ ...task, title: e.target.value }));
+            setNewTask((task) => ({ ...task, name: e.target.value }));
           }}
         />
       </div>
@@ -94,7 +100,7 @@ export function NewTaskForm() {
       <button type="submit" className="create-task">
         Create
       </button>
-      {submitting && !isValid && <p>Please, fill title and description!</p>}
+      {submitting && !isValid && <p>Please, fill name and description!</p>}
     </form>
   );
 }

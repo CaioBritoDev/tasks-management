@@ -1,15 +1,16 @@
 import { useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import { TasksContext } from "../utils/contexts/TasksContext";
-import "./TaskDetailsPage.css"
-import { createUrl } from "../utils/linkHelpers";
+import "./TaskDetailsPage.css";
+import { createUrl, selectEndpoint } from "../utils/linkHelpers";
+import axios from "axios";
 
 export function TaskDetailsPage() {
   const { tasks, setTasks } = useContext(TasksContext);
 
   const { taskId } = useParams();
 
-  const actualTask = tasks.find((task) => task.id === taskId);
+  const actualTask = tasks.find((task) => task.id == taskId);
 
   return (
     <div className="task-details-content">
@@ -18,8 +19,8 @@ export function TaskDetailsPage() {
       </Link>
       <h1>Task Details</h1>
       <div>
-        <h2>Title</h2>
-        <p>{actualTask.title}</p>
+        <h2>Name</h2>
+        <p>{actualTask.name}</p>
       </div>
       <div>
         <h2>Description</h2>
@@ -43,11 +44,27 @@ export function TaskDetailsPage() {
           id="status-task"
           type="checkbox"
           checked={actualTask.finished}
-          onChange={(e) => {
+          onChange={async (e) => {
             const finished = e.target.checked;
+
+            async function setTaskStatus() {
+              try {
+                const body = { finished };
+                await axios.patch(
+                  selectEndpoint(`/tasks/${actualTask.id}`),
+                  body
+                );
+              } catch (error) {
+                // Error handling -> show to user
+                console.log(error.message);
+              }
+            }
+
+            await setTaskStatus();
+
             setTasks((currentTasks) =>
               currentTasks.map((cTask) =>
-                cTask.id === taskId ? { ...cTask, finished } : cTask
+                cTask.id == taskId ? { ...cTask, finished } : cTask
               )
             );
           }}

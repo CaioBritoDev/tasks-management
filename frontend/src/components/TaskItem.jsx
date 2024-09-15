@@ -8,7 +8,7 @@ export function TaskItem({ task }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newDataTask, setNewDataTask] = useState({
     id: task.id,
-    title: task.title,
+    name: task.name,
     description: task.description,
     finished: task.finished,
   });
@@ -16,23 +16,23 @@ export function TaskItem({ task }) {
   return (
     <div className="task-item">
       <div className="task-content">
-        <div className="task-title">
+        <div className="task-name">
           <p>
-            <strong>Title</strong>
+            <strong>Name</strong>
           </p>
           {isEditing ? (
             <input
               type="text"
-              value={newDataTask.title}
+              value={newDataTask.name}
               onChange={(e) => {
                 setNewDataTask((currentState) => ({
                   ...currentState,
-                  title: e.target.value,
+                  name: e.target.value,
                 }));
               }}
             />
           ) : (
-            <p>{task.title}</p>
+            <p>{task.name}</p>
           )}
         </div>
         <div className="task-description">
@@ -72,8 +72,8 @@ export function TaskItem({ task }) {
 
 TaskItem.propTypes = {
   task: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     finished: PropTypes.bool.isRequired,
   }).isRequired,

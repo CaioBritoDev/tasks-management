@@ -49,8 +49,8 @@ form.new-task > div > input {
   cursor: pointer;
 }
 
-
 .create-task:hover {
   background-color: black;
   color: white
 }
+
