@@ -7,7 +7,7 @@ config();
 
 // Middleware
 app.use(cors({
-  origin: "https://caiobritodev.github.io/tasks-management/"
+  origin: "https://caiobritodev.github.io"
 }));
 app.use(express.json());
 
