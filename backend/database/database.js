@@ -15,7 +15,7 @@ const pool = new Pool({
   host: process.env.DATABASE_HOST,
   ssl: isProduction ? {
     rejectUnauthorized: true,
-    ca: process.env.CERTIFICATE // Use environment variable for production
+    ca: Buffer.from(process.env.CERTIFICATE, 'base64').toString('utf-8') // Decode Base64 // Use environment variable for production
   } : {
     rejectUnauthorized: false, // Typically false for development (or as needed)
     ca: fs.readFileSync(path.resolve(__dirname, 'ca.pem')).toString() // Use file in local dev
