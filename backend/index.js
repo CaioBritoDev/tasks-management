@@ -6,7 +6,9 @@ const app = express();
 config();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: "https://caiobritodev.github.io/tasks-management/"
+}));
 app.use(express.json());
 
 // Routes
