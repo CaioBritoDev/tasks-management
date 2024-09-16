@@ -110,6 +110,19 @@ exports.updateTask = async (req, res) => {
         message: "There is no user who belongs to the userId provided.",
       });
 
+    const taskRelated = await pool.query(`
+      SELECT EXISTS(
+        SELECT
+          *
+        FROM
+          task
+        WHERE
+          id = $1
+        )
+    `, [taskId])
+
+    if (!taskRelated.rows[0].exists) return res.status(404).json({ message: "There is no task for the id provided."});
+
     const timeStamp = new Date().toISOString();
 
     const updatedTask = await pool.query(
@@ -124,7 +137,7 @@ exports.updateTask = async (req, res) => {
       `,
       [name, description, finished, userId, timeStamp, taskId]
     );
-    return res.status(204).send(updatedTask.rows[0]);
+    return res.status(200).send(updatedTask.rows[0]);
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({
@@ -232,7 +245,7 @@ exports.removeTask = async (req, res) => {
       [taskId]
     );
 
-    return res.status(201).send();
+    return res.status(200).send();
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({
