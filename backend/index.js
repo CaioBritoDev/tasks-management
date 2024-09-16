@@ -5,13 +5,13 @@ const cors = require("cors");
 const app = express();
 config();
 
-// Middleware
-app.use(cors({
-  origin: "https://caiobritodev.github.io"
-}));
+// Middlewares
 
-// Handle OPTIONS requests for pre-flight
-app.options('*', cors());
+app.use(cors({
+  origin: 'https://caiobritodev.github.io/', // Replace with your client's origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 app.use(express.json());
 
