@@ -8,7 +8,7 @@ config();
 // Middlewares
 
 app.use(cors({
-  origin: 'https://caiobritodev.github.io/', // Replace with your client's origin
+  origin: 'https://caiobritodev.github.io', // Replace with your client's origin
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
