@@ -9,6 +9,10 @@ config();
 app.use(cors({
   origin: "https://caiobritodev.github.io"
 }));
+
+// Handle OPTIONS requests for pre-flight
+app.options('*', cors());
+
 app.use(express.json());
 
 // Routes
