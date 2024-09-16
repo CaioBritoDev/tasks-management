@@ -6,7 +6,6 @@ const path = require('path');
 config(); // Load environment variables from .env file
 
 const isProduction = process.env.NODE_ENV === 'production';
-console.log(isProduction)
 
 const pool = new Pool({
   user: process.env.DATABASE_USER,

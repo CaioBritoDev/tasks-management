@@ -13,14 +13,11 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Handle pre-flight requests
-app.options('*', cors());
-
 app.use(express.json());
 
 // Routes
 app.use('/tasks', require("./routes/taskRoute"));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => console.log(`App is running on PORT ${PORT}`));
